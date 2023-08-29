@@ -30,6 +30,12 @@ sqlc_init:
 sqlc_generate:
 	docker run --rm -v $(CURDIR):/src -w /src kjconroy/sqlc generate
 
+db_docs:
+	dbdocs build .\doc\db.dbml
+
+db_schema:
+	dbml2sql --postgres -o doc/schema.sql doc/db.dbml
+
 test:
 	go test -count=1 -v -cover ./...
 
@@ -39,4 +45,4 @@ server:
 mock:
 	mockgen -package mockdb -destination db/mock/store.go github.com/himske/simplebank/db/sqlc Store
 
-.PHONY: network postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc_init sqlc_generate test server mock
+.PHONY: network postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc_init sqlc_generate test server mock db_docs db_schema
