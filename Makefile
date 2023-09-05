@@ -25,10 +25,10 @@ migratedown1:
 	migrate -path db/migration -database "$(DB_URL)" -verbose down 1
 
 sqlc_init:
-	docker run --rm -v $(CURDIR):/src -w /src kjconroy/sqlc init
+	docker run --rm -v $(CURDIR):/src -w /src sqlc/sqlc init
 
 sqlc_generate:
-	docker run --rm -v $(CURDIR):/src -w /src kjconroy/sqlc generate
+	docker run --rm -v $(CURDIR):/src -w /src sqlc/sqlc generate
 
 db_docs:
 	dbdocs build .\doc\db.dbml
