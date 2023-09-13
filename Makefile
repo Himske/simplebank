@@ -54,4 +54,7 @@ proto:
 evans:
 	evans --host localhost --port 9090 -r repl
 
-.PHONY: network postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc_init sqlc_generate test server mock db_docs db_schema proto evans
+redis:
+	docker run --name redis -p 6379:6379 -d redis:7-alpine
+
+.PHONY: network postgres createdb dropdb migrateup migrateup1 migratedown migratedown1 sqlc_init sqlc_generate test server mock db_docs db_schema proto evans redis
