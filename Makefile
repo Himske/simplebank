@@ -37,7 +37,7 @@ db_schema:
 	dbml2sql --postgres -o doc/schema.sql doc/db.dbml
 
 test:
-	go test -count=1 -v -cover ./...
+	go test -count=1 -v -cover -short ./...
 
 server:
 	go run main.go
